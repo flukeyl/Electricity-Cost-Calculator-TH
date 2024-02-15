@@ -1,0 +1,148 @@
+:root {
+    --gery: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    background: #4CAF50;
+}
+
+.nav-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+}
+
+.logo a {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu li {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 1rem
+}
+
+.menu li a:hover {
+    background: #46a149;
+    z-index: 99;
+}
+
+/* header */
+header {
+    margin: 100px 0;
+}
+
+header .btn {
+    background-color: #23b1e0;
+    font-size: 18px;
+}
+
+header .btn:hover {
+    background-color: #008CBA;
+}
+
+header h3 {
+    font-weight: bold;
+}
+
+header p {
+    margin: 50px 0;
+    font-size: 18px;
+}
+
+.card-main {
+    border-radius: 25px;
+}
+
+.card-main .card-img {
+    border-radius: 25px;
+}
+
+/* section */
+.card-cal {
+    width: 85%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.electric {
+    margin: 100px 0;
+}
+
+.elc-menu .form-label {
+    margin: 20px 0 10px;
+    font-size: 18px;
+}
+
+.menu-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.result-menu .form-label {
+    margin: 40px 0 10px;
+    font-size: 18px;
+}
+
+.txt-info {
+    padding: 5px 0 0 5px;
+    font-weight: bold;
+}
+
+.result-check {
+    display: flex;
+}
+
+.result-check .input-result {
+    width: 75%;
+}
+
+.result-check .text-price {
+    margin-left: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.elc-price .row {
+    margin-bottom: 20px;
+}
+
+/* footer */
+footer {
+    height: 75px;
+    background-color: #4CAF50;
+}
+
+@media screen and (max-width: 431px) {
+    /* navbar */
+    .nav-con .logo a {
+        font-size: 20px;
+    }
+
+    .nav-con .menu a {
+        font-size: 16px;
+    }
+
+    /*  */
+}

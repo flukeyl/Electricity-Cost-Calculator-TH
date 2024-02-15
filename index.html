@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณค่าไฟ</title>
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="./assets/js/bootstrap.bundle.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="./assets/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <nav class="sticky-top">
+        <div class="container">
+            <div class="nav-con">
+                <div class="logo">
+                    <a href="index.html">
+                        โปรแกรมคำนวณค่าไฟ
+                    </a>
+                </div>
+                <ul class="menu">
+                    <li><a href="#home" class="btn">หน้าแรก</a></li>
+                    <li><a href="#calculate" class="btn">โปรแกรมคำนวณ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="container">
+            <div class="row row-cols-lg-2 row-cols-sm-1">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>คำนวณค่าไฟฟ้า ด้วยตนเองสามารถทำได้อย่างไร</h3>
+                    <p>เนื่องจากในปัจจุบันเป็นยุคที่เศรษฐกิจไม่สู้ดีเท่าไรนัก ส่งผลให้ต้องควบคุมค่าใช้จ่ายหลาย ๆ อย่างภายในบ้าน ไม่ว่าจะเป็น ค่าไฟฟ้า ค่าน้ำประปา ค่าน้ำมันรถ และค่าใช้จ่ายส่วนตัว โดยเฉพาะอย่างยิ่ง ค่าไฟฟ้า ซึ่งเป็นสิ่งที่หลีกเลี่ยงไม่ได้ ดังนั้นเราจึงควรทราบวิธีการคำนวณค่าใช้จ่ายว่าที่ผ่านมานั้น ใช้ไฟฟ้าไปกี่หน่วย จะต้องเสียค่าใช้จ่ายเป็นจำนวนเงินเท่าไร และมีวิธีการในการ ลดค่าไฟ อย่างไร</p>
+                </div>
+                <div class="col col-lg-6 col-sm-12">
+                    <div class="card card-main">
+                        <img class="card-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Title" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section id="calculate">
+        <div class="container">
+            <hr>
+                <div class="card card-cal">
+                    <h2 style="text-align: center;">คำนวณค่าไฟฟ้า</h2>
+                    <div class="elc-menu">
+                        <label for="" class="form-label">กำลังไฟฟ้า</label>
+                        <input type="number" class="form-control" id="Inputwatt" placeholder="กำลังไฟฟ้า (วัตต์)"/>
+                        <label for="" class="form-label">จำนวนเครื่องใช้ไฟฟ้า</label>
+                        <input type="number" class="form-control" id="Inputamount" placeholder="เช่น 10"/>
+                        <label for="" class="form-label">จำนวนชั่วโมงที่ใช้ใน 1 วัน</label>
+                        <input type="number" class="form-control" id="Inputhour" placeholder="หน่วยชั่วโมง"/>
+                        <div class="menu-button">
+                            <button class="btn btn-secondary" onclick="clearInput()">คืนค่า</button>
+                            <button class="btn btn-success" onclick="insertInput()">คำนวณ</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="elc-price">
+                        <div class="row">
+                            <h4 style="margin-bottom: 20px;">ยูนิตไฟฟ้า</h4>
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อวัน</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result" disabled>
+                                <p class="text-price">หน่วย</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อเดือน</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result1" disabled>
+                                <p class="text-price">หน่วย</p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <h4 style="margin-bottom: 20px;">ค่าไฟฟ้าต่อเดือน เมื่อใช้ไฟฟ้ามากกว่า 150 หน่วยต่อเดือน</h4>
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">150 หน่วยแรก (หน่วยที่ 1 - 150)</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result2" disabled>
+                                <p class="text-price">บาท</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">250 หน่วยต่อไป (หน่วยที่ 151 - 400)</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result3" disabled>
+                                <p class="text-price">บาท</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">เกินกว่า 400 หน่วย (หน่วยที่ 401 เป็นต้นไป)</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result4" disabled>
+                                <p class="text-price">บาท</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">ค่าบริการ</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="s_fee" disabled>
+                                <p class="text-price">บาท</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">รวมทั้งหมด</label>
+                            </div>
+                            <div class="col-sm-6 result-check">
+                                <input type="text" class="form-control input-result" id="result5" disabled>
+                                <p class="text-price">บาท</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- card -->
+            <hr>
+        </div>
+    </section>
+
+    <footer>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
