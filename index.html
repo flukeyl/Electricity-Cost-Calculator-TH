@@ -8,18 +8,33 @@
     <script src="./assets/js/bootstrap.bundle.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="./assets/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body> 
     <nav class="sticky-top">
         <div class="container">
-            <div class="nav-con">
+            <div class="nav-con" id="close">
                 <div class="logo">
                     <a href="index.html">
                         โปรแกรมคำนวณค่าไฟ
                     </a>
                 </div>
                 <ul class="menu">
+                    <li><a href="#home" class="btn">หน้าแรก</a></li>
+                    <li><a href="#calculate" class="btn">โปรแกรมคำนวณ</a></li>
+                    <li><span class="material-symbols-outlined" id="menu-icon" onclick="menuNavbar()">menu</span></li>
+                </ul>
+            </div>
+            
+            <div class="nav-con-res" id="menu">
+                <div class="logo">
+                    <a href="index.html">
+                        โปรแกรมคำนวณค่าไฟ
+                    </a>
+                    <li><span class="material-symbols-outlined" id="close-icon" onclick="closeNavbar()">close</span></li>
+                </div>
+                <ul class="menu-res" id="menu-list">
                     <li><a href="#home" class="btn">หน้าแรก</a></li>
                     <li><a href="#calculate" class="btn">โปรแกรมคำนวณ</a></li>
                 </ul>
@@ -48,95 +63,252 @@
             <hr>
                 <div class="card card-cal">
                     <h2 style="text-align: center;">คำนวณค่าไฟฟ้า</h2>
-                    <div class="elc-menu">
-                        <label for="" class="form-label">กำลังไฟฟ้า</label>
-                        <input type="number" class="form-control" id="Inputwatt" placeholder="กำลังไฟฟ้า (วัตต์)"/>
-                        <label for="" class="form-label">จำนวนเครื่องใช้ไฟฟ้า</label>
-                        <input type="number" class="form-control" id="Inputamount" placeholder="เช่น 10"/>
-                        <label for="" class="form-label">จำนวนชั่วโมงที่ใช้ใน 1 วัน</label>
-                        <input type="number" class="form-control" id="Inputhour" placeholder="หน่วยชั่วโมง"/>
-                        <div class="menu-button">
-                            <button class="btn btn-secondary" onclick="clearInput()">คืนค่า</button>
-                            <button class="btn btn-success" onclick="insertInput()">คำนวณ</button>
+
+                    <div class="elc-type">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="" class="form-check-label type-head">
+                                    ประเภทที่ 1
+                                </label>
+                            </div>
+                            <div class="col-sm-6 type">
+                                <input type="radio" class="form-check-input" name="flexRadioDefault" id="elc1" onclick="elcType1()" checked>
+                                    <label for="elc1" class="form-check-label">
+                                        บ้านอยู่อาศัยอัตรา 1.1
+                                    </label><br>
+                                <input type="radio" class="form-check-input" name="flexRadioDefault" id="elc2" onclick="elcType2()">
+                                    <label for="elc2" class="form-check-label">
+                                        บ้านอยู่อาศัยอัตรา 1.2
+                                    </label>
+                            </div>
                         </div>
                     </div>
-
-                    <hr>
-
-                    <div class="elc-price">
-                        <div class="row">
-                            <h4 style="margin-bottom: 20px;">ยูนิตไฟฟ้า</h4>
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อวัน</label>
-                            </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result" disabled>
-                                <p class="text-price">หน่วย</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อเดือน</label>
-                            </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result1" disabled>
-                                <p class="text-price">หน่วย</p>
+                    <!-- less than 150 units -->
+                    <div id="type1">
+                        <div class="elc-menu" id="elc-menu1">
+                            <label for="" class="form-label">กำลังไฟฟ้า1</label>
+                            <input type="number" class="form-control" id="Inputwatt1" placeholder="กำลังไฟฟ้า (วัตต์)"/>
+                            <label for="" class="form-label">จำนวนเครื่องใช้ไฟฟ้า</label>
+                            <input type="number" class="form-control" id="Inputamount1" placeholder="เช่น 10"/>
+                            <label for="" class="form-label">จำนวนชั่วโมงที่ใช้ใน 1 วัน</label>
+                            <input type="number" class="form-control" id="Inputhour1" placeholder="หน่วยชั่วโมง"/>
+                            <div class="menu-button">
+                                <button class="btn btn-secondary" onclick="clearInput1()">คืนค่า</button>
+                                <button class="btn btn-success" onclick="insertInput1()">คำนวณ</button>
                             </div>
                         </div>
-
+    
                         <hr>
-
-                        <div class="row">
-                            <h4 style="margin-bottom: 20px;">ค่าไฟฟ้าต่อเดือน เมื่อใช้ไฟฟ้ามากกว่า 150 หน่วยต่อเดือน</h4>
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">150 หน่วยแรก (หน่วยที่ 1 - 150)</label>
+                        
+                        <div class="elc-price">
+                            <div class="row">
+                                <h4 style="margin-bottom: 20px;">ยูนิตไฟฟ้า</h4>
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อวัน</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result" disabled>
+                                    <p class="text-price">หน่วย</p>
+                                </div>
                             </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result2" disabled>
-                                <p class="text-price">บาท</p>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อเดือน</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result1" disabled>
+                                    <p class="text-price">หน่วย</p>
+                                </div>
+                            </div>
+    
+                            <hr>
+    
+                            <div class="row">
+                                <h4 style="margin-bottom: 20px;">ค่าไฟฟ้าต่อเดือน เมื่อใช้ไฟฟ้าไม่เกิน 150 หน่วยต่อเดือน</h4>
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">15 หน่วย(กิโลวัตต์ชั่วโมง)แรก (หน่วยที่ 1 - 15)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result2" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">10 หน่วยต่อไป (หน่วยที่ 16 - 25)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result3" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">10 หน่วยต่อไป (หน่วยที่ 26 - 35)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result4" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">65 หน่วยต่อไป (หน่วยที่ 36 - 100)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result5" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">50 หน่วยต่อไป (หน่วยที่ 101 - 150)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result6" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">250 หน่วยต่อไป (หน่วยที่ 151 - 400)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result7" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">เกินกว่า 400 หน่วย (หน่วยที่ 401 เป็นต้นไป)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result8" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">ค่าบริการ</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_s_fee" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info" style="font-weight: bold;">รวมทั้งหมด</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="less_result9" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
+                            </div>
+                        </div> <!-- elc-pric -->
+                    </div>
+
+                    <!-- more than 150 units -->
+                    <div id="type2">
+                        <div class="elc-menu" id="elc-menu1">
+                            <label for="" class="form-label">กำลังไฟฟ้า2</label>
+                            <input type="number" class="form-control" id="Inputwatt2" placeholder="กำลังไฟฟ้า (วัตต์)"/>
+                            <label for="" class="form-label">จำนวนเครื่องใช้ไฟฟ้า</label>
+                            <input type="number" class="form-control" id="Inputamount2" placeholder="เช่น 10"/>
+                            <label for="" class="form-label">จำนวนชั่วโมงที่ใช้ใน 1 วัน</label>
+                            <input type="number" class="form-control" id="Inputhour2" placeholder="หน่วยชั่วโมง"/>
+                            <div class="menu-button">
+                                <button class="btn btn-secondary" onclick="clearInput2()">คืนค่า</button>
+                                <button class="btn btn-success" onclick="insertInput2()">คำนวณ</button>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">250 หน่วยต่อไป (หน่วยที่ 151 - 400)</label>
+    
+                        <hr>
+    
+                        <div class="elc-price">
+                            <div class="row">
+                                <h4 style="margin-bottom: 20px;">ยูนิตไฟฟ้า</h4>
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อวัน</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result" disabled>
+                                    <p class="text-price">หน่วย</p>
+                                </div>
                             </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result3" disabled>
-                                <p class="text-price">บาท</p>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="" class="form-label txt-info">ยูนิตไฟฟ้าที่ใช้ต่อเดือน</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result1" disabled>
+                                    <p class="text-price">หน่วย</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">เกินกว่า 400 หน่วย (หน่วยที่ 401 เป็นต้นไป)</label>
+    
+                            <hr>
+    
+                            <div class="row">
+                                <h4 style="margin-bottom: 20px;">ค่าไฟฟ้าต่อเดือน เมื่อใช้ไฟฟ้าเกินกว่า 150 หน่วยต่อเดือน</h4>
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">150 หน่วยแรก (หน่วยที่ 1 - 150)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result2" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
                             </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result4" disabled>
-                                <p class="text-price">บาท</p>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">250 หน่วยต่อไป (หน่วยที่ 151 - 400)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result3" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">ค่าบริการ</label>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">เกินกว่า 400 หน่วย (หน่วยที่ 401 เป็นต้นไป)</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result4" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
                             </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="s_fee" disabled>
-                                <p class="text-price">บาท</p>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info">ค่าบริการ</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="s_fee" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                    <label for="" class="form-label txt-info">รวมทั้งหมด</label>
+    
+                            <div class="row">
+                                <div class="col-sm-6">
+                                        <label for="" class="form-label txt-info" style="font-weight: bold;">รวมทั้งหมด</label>
+                                </div>
+                                <div class="col-sm-6 result-check">
+                                    <input type="text" class="form-control input-result" id="result5" disabled>
+                                    <p class="text-price">บาท</p>
+                                </div>
                             </div>
-                            <div class="col-sm-6 result-check">
-                                <input type="text" class="form-control input-result" id="result5" disabled>
-                                <p class="text-price">บาท</p>
-                            </div>
-                        </div>
+                        </div> <!-- elc-pric -->
                     </div>
                 </div> <!-- card -->
             <hr>

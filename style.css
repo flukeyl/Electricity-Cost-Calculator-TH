@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
     --gery: #f0f0f0;
 }
@@ -6,6 +8,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Prompt", sans-serif;
 }
 
 nav {
@@ -35,16 +38,78 @@ nav {
     margin-top: 15px;
 }
 
-.menu li a {
+.menu li a , li span {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    padding: 1rem
+    padding: 1rem;
+    cursor: pointer;
+    transition: 10s;
 }
 
-.menu li a:hover {
+.menu li a:hover , li span:hover {
     background: #46a149;
     z-index: 99;
+}
+
+@keyframes example {
+    0% {
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(45deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* navbar responsive */
+#menu {
+    display: none;
+}
+
+#close {
+    display: flex;
+}
+
+#menu-icon {
+    display: none;
+}
+
+.nav-con-res .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-con-res .logo a {
+    margin-top: 12px;
+}
+
+.nav-con-res .logo li {
+    list-style: none;
+}
+
+.nav-con-res .logo li span {
+    color: #fff;
+    font-weight: bold;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.menu-res {
+    list-style: none;
+    margin: 0px;
+    padding: 0;
+    height: 80px;
+}
+
+.menu-res li a {
+    width: 100%;
+    display: flex;
+    color: #fff;
 }
 
 /* header */
@@ -85,8 +150,17 @@ header p {
     padding: 1rem;
 }
 
-.electric {
-    margin: 100px 0;
+#type1 {
+    display: block;
+}
+
+#type2 {
+    display: none;
+}
+
+.elc-type {
+    margin: 20px 0 10px;
+    font-size: 18px;
 }
 
 .elc-menu .form-label {
@@ -107,7 +181,6 @@ header p {
 
 .txt-info {
     padding: 5px 0 0 5px;
-    font-weight: bold;
 }
 
 .result-check {
@@ -141,8 +214,23 @@ footer {
     }
 
     .nav-con .menu a {
+        display: none;
+    }
+
+    /* navbar responsive  */
+    #menu-icon {
+        display: flex;
+    }
+
+    .nav-con-res .logo a {
+        font-size: 20px;
+    }
+    
+    .nav-con-res .menu-res {
         font-size: 16px;
     }
 
-    /*  */
+    .type {
+        font-size: 18px;
+    }
 }
